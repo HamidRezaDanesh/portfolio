@@ -1,0 +1,6 @@
+# Redirect admin routes
+/admin/* /admin/login 200
+/admin /admin/login 200
+
+# SPA fallback
+/* /index.html 200

@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /admin/login
+
+# Sitemap
+Sitemap: https://hamidrezadaneshsarand.com/sitemap.xml
