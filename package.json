@@ -1,0 +1,242 @@
+{
+  "name": "hamidreza-portfolio",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Professional portfolio website for Hamidreza Daneshsarand - Mechanical Design Engineer specializing in SolidWorks, CATIA, and cost optimization",
+  "author": {
+    "name": "Hamidreza Daneshsarand",
+    "email": "hamidrezadanesh1996@gmail.com",
+    "url": "https://hamidrezadaneshsarand.com"
+  },
+  "type": "module",
+  "keywords": [
+    "portfolio",
+    "mechanical-engineer",
+    "solidworks",
+    "catia",
+    "cad-design",
+    "manufacturing",
+    "automotive",
+    "react",
+    "typescript",
+    "vite",
+    "tailwindcss",
+    "i18n",
+    "sweden"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hamidrezadanesh/portfolio"
+  },
+  "homepage": "https://hamidrezadaneshsarand.com",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "vite --host",
+    "dev:https": "vite --https --host",
+    "dev:turbo": "vite --host --force",
+    "build": "tsc && vite build",
+    "build:prod": "cross-env NODE_ENV=production npm run build",
+    "build:analyze": "cross-env ANALYZE=true npm run build",
+    "build:debug": "cross-env DEBUG=vite:* npm run build",
+    "preview": "vite preview --host --port 4173",
+    "preview:https": "vite preview --https --host --port 4173",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "type-check": "tsc --noEmit --pretty",
+    "type-check:watch": "tsc --noEmit --watch --pretty",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
+    "clean": "rimraf dist node_modules/.vite .turbo",
+    "clean:cache": "npm cache clean --force",
+    "reinstall": "npm run clean && npm install",
+    "lighthouse": "npx lighthouse https://hamidrezadaneshsarand.com --view --output=html --output-path=./lighthouse-report.html --chrome-flags=\"--headless\"",
+    "lighthouse:mobile": "npx lighthouse https://hamidrezadaneshsarand.com --preset=perf --view --output=html --output-path=./lighthouse-mobile.html --emulated-form-factor=mobile --chrome-flags=\"--headless\"",
+    "lighthouse:desktop": "npx lighthouse https://hamidrezadaneshsarand.com --preset=perf --view --output=html --output-path=./lighthouse-desktop.html --emulated-form-factor=desktop --chrome-flags=\"--headless\"",
+    "size": "npm run build && npm run size:check",
+    "size:check": "npx bundlesize",
+    "size:limit": "npx size-limit",
+    "analyze": "npm run build:analyze",
+    "prebuild": "npm run type-check",
+    "postbuild": "node -e \"console.log('\\x1b[32m✅ Build completed successfully!\\x1b[0m')\"",
+    "check-all": "npm run type-check && npm run lint && npm run format:check",
+    "check-deps": "npx npm-check-updates",
+    "update-deps": "npx npm-check-updates -u && npm install",
+    "perf:analyze": "npm run build:analyze",
+    "perf:full": "npm run build && npm run lighthouse && npm run size:check",
+    "audit": "npm audit --audit-level=moderate",
+    "audit:fix": "npm audit fix"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.5.4",
+    "i18next": "^23.15.1",
+    "i18next-browser-languagedetector": "^8.0.0",
+    "i18next-http-backend": "^2.6.1",
+    "lucide-react": "^0.446.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-helmet-async": "^2.0.5",
+    "react-i18next": "^15.0.2",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.9",
+    "@tailwindcss/typography": "^0.5.15",
+    "@types/node": "^22.7.5",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.8.0",
+    "@typescript-eslint/parser": "^8.8.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "autoprefixer": "^10.4.20",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "bundlesize": "^0.18.2",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.12.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.12",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "rimraf": "^6.0.1",
+    "rollup-plugin-visualizer": "^5.12.0",
+    "sharp": "^0.33.5",
+    "size-limit": "^11.1.5",
+    "@size-limit/preset-app": "^11.1.5",
+    "tailwindcss": "^3.4.13",
+    "tailwindcss-rtl": "^0.9.0",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8",
+    "vite-plugin-compression": "^0.5.1",
+    "web-vitals": "^4.2.3"
+  },
+  "bundlesize": [
+    {
+      "path": "./dist/assets/js/react.*.js",
+      "maxSize": "20 KB",
+      "compression": "gzip"
+    },
+    {
+      "path": "./dist/assets/js/react-dom.*.js",
+      "maxSize": "50 KB",
+      "compression": "gzip"
+    },
+    {
+      "path": "./dist/assets/js/motion.*.js",
+      "maxSize": "40 KB",
+      "compression": "gzip"
+    },
+    {
+      "path": "./dist/assets/js/router.*.js",
+      "maxSize": "25 KB",
+      "compression": "gzip"
+    },
+    {
+      "path": "./dist/assets/js/i18n.*.js",
+      "maxSize": "20 KB",
+      "compression": "gzip"
+    },
+    {
+      "path": "./dist/assets/js/page-*.js",
+      "maxSize": "30 KB",
+      "compression": "gzip"
+    },
+    {
+      "path": "./dist/assets/css/*.css",
+      "maxSize": "35 KB",
+      "compression": "gzip"
+    }
+  ],
+  "size-limit": [
+    {
+      "name": "Initial JS Bundle",
+      "path": "dist/assets/js/main.*.js",
+      "limit": "50 KB"
+    },
+    {
+      "name": "React Bundles",
+      "path": "dist/assets/js/react*.js",
+      "limit": "70 KB"
+    },
+    {
+      "name": "Total CSS",
+      "path": "dist/assets/css/*.css",
+      "limit": "35 KB"
+    },
+    {
+      "name": "All JavaScript",
+      "path": "dist/assets/js/*.js",
+      "limit": "300 KB"
+    }
+  ],
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run type-check"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all",
+      "not ie 11",
+      "not chrome < 90",
+      "not safari < 14",
+      "not firefox < 88"
+    ],
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 safari versions",
+      "last 2 edge versions"
+    ]
+  },
+  "prettier": {
+    "semi": true,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "printWidth": 100,
+    "arrowParens": "always",
+    "endOfLine": "lf",
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:react-hooks/recommended",
+      "prettier"
+    ],
+    "rules": {
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          "argsIgnorePattern": "^_"
+        }
+      ],
+      "@typescript-eslint/no-explicit-any": "warn",
+      "react-hooks/exhaustive-deps": "warn"
+    }
+  }
+}
