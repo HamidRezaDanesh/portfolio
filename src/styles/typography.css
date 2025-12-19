@@ -1,0 +1,493 @@
+/* ============================================
+   1. IMPORT VAZIRMATN FONT
+   ============================================ */
+
+@import url('https://cdn.fontcdn.ir/font/Vazirmatn/Vazirmatn-font-face.css');
+
+/* Fallback برای آفلاین */
+
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Vazirmatn-Regular.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Vazirmatn';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/Vazirmatn-Bold.ttf') format('truetype');
+}
+
+/* ============================================
+   2. CSS VARIABLES
+   ============================================ */
+
+:root {
+  /* Font Family */
+  --font-vazir: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Courier New', 'Monaco', monospace;
+
+  /* Font Sizes */
+  --text-xs: clamp(0.75rem, 1.5vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 2vw, 1rem);
+  --text-base: clamp(1rem, 2.5vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 3vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 3.5vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 4vw, 1.875rem);
+  --text-3xl: clamp(1.875rem, 5vw, 2.25rem);
+  --text-4xl: clamp(2.25rem, 6vw, 3rem);
+  --text-5xl: clamp(3rem, 7vw, 3.75rem);
+  --text-6xl: clamp(3.75rem, 8vw, 4.5rem);
+
+  /* Line Heights */
+  --leading-tight: 1.1;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.7;
+  --leading-loose: 1.9;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0px;
+  --tracking-wide: 0.3px;
+  --tracking-wider: 0.5px;
+
+  /* Font Weights */
+  --font-thin: 300;
+  --font-light: 400;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-black: 900;
+
+  /* Colors */
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-tertiary: #9ca3af;
+  --text-inverted: #f9fafb;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-tertiary: #9ca3af;
+    --text-inverted: #1f2937;
+  }
+}
+
+/* ============================================
+   3. GLOBAL TEXT STYLES
+   ============================================ */
+
+* {
+  font-family: var(--font-vazir);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html {
+  direction: rtl;
+  text-align: right;
+}
+
+body {
+  font-family: var(--font-vazir);
+  font-size: var(--text-base);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-relaxed);
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-primary);
+  background-color: #ffffff;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111827;
+  }
+}
+
+/* ============================================
+   4. HEADINGS
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin-bottom: 1rem;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--text-6xl);
+  font-weight: var(--font-black);
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: var(--text-5xl);
+  font-weight: var(--font-bold);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+h3 {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  letter-spacing: -0.01em;
+}
+
+h4 {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-semibold);
+}
+
+h5 {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
+}
+
+h6 {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+}
+
+/* ============================================
+   5. PARAGRAPH & TEXT BLOCKS
+   ============================================ */
+
+p {
+  margin-bottom: 1.5rem;
+  line-height: var(--leading-relaxed);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.lead {
+  font-size: var(--text-lg);
+  font-weight: var(--font-light);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+small, .small {
+  font-size: var(--text-sm);
+  color: var(--text-tertiary);
+}
+
+mark {
+  background-color: rgba(59, 130, 246, 0.2);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+/* ============================================
+   6. LINKS & INTERACTIVE TEXT
+   ============================================ */
+
+a {
+  color: #0284c7;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+a:hover {
+  color: #0369a1;
+}
+
+a:visited {
+  color: #7c3aed;
+}
+
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #0284c7, #8b5cf6);
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   7. LISTS
+   ============================================ */
+
+ul, ol {
+  margin-bottom: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+ul > li, ol > li {
+  margin-bottom: 0.75rem;
+  line-height: var(--leading-relaxed);
+}
+
+ul > li::marker {
+  color: #0284c7;
+  font-weight: var(--font-bold);
+}
+
+ol > li::marker {
+  color: #8b5cf6;
+  font-weight: var(--font-bold);
+}
+
+/* ============================================
+   8. BLOCKQUOTE & QUOTES
+   ============================================ */
+
+blockquote {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-right: 4px solid #0284c7;
+  background-color: rgba(2, 132, 199, 0.05);
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+blockquote p {
+  margin-bottom: 0;
+}
+
+blockquote cite {
+  display: block;
+  margin-top: 1rem;
+  font-size: var(--text-sm);
+  font-style: normal;
+  color: var(--text-tertiary);
+}
+
+/* ============================================
+   9. CODE & PREFORMATTED TEXT
+   ============================================ */
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #dc2626;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  code {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fca5a5;
+  }
+}
+
+pre {
+  background-color: #1f2937;
+  color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+}
+
+/* ============================================
+   10. EMPHASIZED TEXT
+   ============================================ */
+
+strong, .bold {
+  font-weight: var(--font-bold);
+}
+
+em, .italic {
+  font-style: italic;
+}
+
+.text-light {
+  font-weight: var(--font-light);
+}
+
+.text-semibold {
+  font-weight: var(--font-semibold);
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+/* ============================================
+   11. TEXT COLORS
+   ============================================ */
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+
+.text-blue {
+  color: #0284c7;
+}
+
+.text-purple {
+  color: #8b5cf6;
+}
+
+.text-pink {
+  color: #ec4899;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #0284c7, #8b5cf6, #ec4899);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================
+   12. RESPONSIVE TEXT SIZES
+   ============================================ */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: clamp(2rem, 6vw, 2.5rem);
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 4vw, 1.5rem);
+  }
+
+  body {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}
+
+/* ============================================
+   13. UTILITY CLASSES
+   ============================================ */
+
+.font-vazir {
+  font-family: var(--font-vazir);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.tracking-tight {
+  letter-spacing: var(--tracking-tight);
+}
+
+.tracking-wide {
+  letter-spacing: var(--tracking-wide);
+}
+
+.tracking-wider {
+  letter-spacing: var(--tracking-wider);
+}
+
+.leading-tight {
+  line-height: var(--leading-tight);
+}
+
+.leading-relaxed {
+  line-height: var(--leading-relaxed);
+}
+
+.leading-loose {
+  line-height: var(--leading-loose);
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ============================================
+   14. ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid #0284c7;
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: more) {
+  body {
+    letter-spacing: 0.05em;
+    line-height: 1.8;
+  }
+}
