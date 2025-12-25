@@ -4,9 +4,93 @@ import { Code, Factory, TrendingUp, Shield } from 'lucide-react';
 import SkillBar from '@/components/SkillBar';
 import CertificationCard from '@/components/CertificationCard';
 import { AnimatedSection, AnimatedStagger, AnimatedStaggerItem } from '@/animations/components/AnimatedSection';
+import { useCRUD } from '@/admin/hooks/useCRUD';
+import type { Certification } from '@/types/admin.types';
+import { useEffect } from 'react';
+
+// ✅ Default certifications - fallback اگر localStorage خالی بود
+const DEFAULT_CERTIFICATIONS = [
+  {
+    id: '1',
+    title: 'SOLIDWORKS 3D CAD Specialization',
+    issuer: 'Dassault Systems (Coursera)',
+    date: '2025-08',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/1Z9RQUOEMMLQ',
+    credentialId: '1Z9RQUOEMMLQ'
+  },
+  {
+    id: '2',
+    title: 'Six Sigma Yellow Belt',
+    issuer: 'Kennesaw State University (Coursera)',
+    date: '2025-08',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/QFX55BHAWYJK',
+    credentialId: 'QFX55BHAWYJK'
+  },
+  {
+    id: '3',
+    title: 'Google Project Management Certificate',
+    issuer: 'Google (Coursera)',
+    date: '2025-07',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/professional-cert/UVE99BTSXUF0',
+    credentialId: 'UVE99BTSXUF0'
+  },
+  {
+    id: '4',
+    title: 'Digital Technologies & Manufacturing',
+    issuer: 'University of Michigan (Coursera)',
+    date: '2025-06',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/DH6AMCFTZEF3',
+    credentialId: 'DH6AMCFTZEF3'
+  },
+  {
+    id: '5',
+    title: 'AI for Mechanical Engineers',
+    issuer: 'University of Michigan (Coursera)',
+    date: '2025-04',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/LTBELHHCWTG6',
+    credentialId: 'LTBELHHCWTG6'
+  },
+  {
+    id: '6',
+    title: 'CNC Miller Certification',
+    issuer: 'Iran Technical & Vocational Training',
+    date: '2020',
+    credentialUrl: '',
+    credentialId: ''
+  },
+  {
+    id: '7',
+    title: 'Python for Everybody',
+    issuer: 'University of Michigan (Coursera)',
+    date: '2025-07',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/5QKJRPP7ZB9C',
+    credentialId: '5QKJRPP7ZB9C'
+  },
+  {
+    id: '8',
+    title: 'Meta Full-Stack Developer',
+    issuer: 'Meta (Coursera)',
+    date: '2025-08',
+    credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/M103G9DKSBBK',
+    credentialId: 'M103G9DKSBBK'
+  }
+];
 
 export default function SkillsPage() {
   const { t } = useTranslation();
+  
+  // ✅ استفاده از useCRUD برای خواندن certifications از localStorage
+  const { items: storedCertifications, refresh } = useCRUD<Certification>('certifications');
+
+  // ✅ Refresh data when component mounts
+  useEffect(() => {
+    refresh();
+  }, [refresh]);
+
+  // ✅ اگر localStorage خالی بود، از DEFAULT استفاده کن
+  const certifications = storedCertifications.length > 0 
+    ? storedCertifications 
+    : DEFAULT_CERTIFICATIONS;
 
   const skillCategories = [
     {
@@ -52,56 +136,6 @@ export default function SkillsPage() {
     },
   ];
 
-  const certifications = [
-    {
-      title: t('skills.cert1Title'),
-      issuer: t('skills.cert1Issuer'),
-      date: t('skills.cert1Date'),
-      credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/1Z9RQUOEMMLQ',
-    },
-    {
-      title: t('skills.cert2Title'),
-      issuer: t('skills.cert2Issuer'),
-      date: t('skills.cert2Date'),
-      credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/QFX55BHAWYJK',
-    },
-    {
-      title: t('skills.cert3Title'),
-      issuer: t('skills.cert3Issuer'),
-      date: t('skills.cert3Date'),
-      credentialUrl: 'https://www.coursera.org/account/accomplishments/professional-cert/UVE99BTSXUF0',
-    },
-    {
-      title: t('skills.cert4Title'),
-      issuer: t('skills.cert4Issuer'),
-      date: t('skills.cert4Date'),
-      credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/DH6AMCFTZEF3',
-    },
-    {
-      title: t('skills.cert5Title'),
-      issuer: t('skills.cert5Issuer'),
-      date: t('skills.cert5Date'),
-      credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/LTBELHHCWTG6',
-    },
-    {
-      title: t('skills.cert6Title'),
-      issuer: t('skills.cert6Issuer'),
-      date: t('skills.cert6Date'),
-    },
-    {
-      title: t('skills.cert7Title'),
-      issuer: t('skills.cert7Issuer'),
-      date: t('skills.cert7Date'),
-      credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/5QKJRPP7ZB9C',
-    },
-    {
-      title: t('skills.cert8Title'),
-      issuer: t('skills.cert8Issuer'),
-      date: t('skills.cert8Date'),
-      credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/M103G9DKSBBK',
-    },
-  ];
-
   return (
     <section id="skills" className="py-20 relative">
       {/* Overlay for better readability */}
@@ -120,7 +154,7 @@ export default function SkillsPage() {
           </div>
         </AnimatedSection>
 
-        {/* Skills Grid با AnimatedStagger */}
+        {/* Skills Grid */}
         <AnimatedStagger staggerDelay={0.15}>
           <div className="grid lg:grid-cols-2 gap-8 mb-20">
             {skillCategories.map((category, index) => (
@@ -163,8 +197,13 @@ export default function SkillsPage() {
           <AnimatedStagger staggerDelay={0.1}>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {certifications.map((cert, index) => (
-                <AnimatedStaggerItem key={index}>
-                  <CertificationCard {...cert} />
+                <AnimatedStaggerItem key={cert.id || index}>
+                  <CertificationCard
+                    title={cert.title}
+                    issuer={cert.issuer}
+                    date={cert.date}
+                    credentialUrl={cert.credentialUrl}
+                  />
                 </AnimatedStaggerItem>
               ))}
             </div>

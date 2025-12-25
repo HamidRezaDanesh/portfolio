@@ -1,4 +1,4 @@
-// src/utils/storage.ts
+// src/utils/storage.ts - ✅ FIXED VERSION
 import type { PortfolioData, UploadedFile } from '../types/admin.types';
 
 const STORAGE_KEY = 'portfolio_data';
@@ -8,7 +8,13 @@ export const storage = {
     try {
       const data = localStorage.getItem(STORAGE_KEY);
       if (data) {
-        return JSON.parse(data);
+        const parsed = JSON.parse(data);
+        // ✅ اگر certifications خالی بود، از default استفاده کن
+        if (!parsed.certifications || parsed.certifications.length === 0) {
+          parsed.certifications = this.getDefaultData().certifications;
+          this.setData(parsed);
+        }
+        return parsed;
       }
       return this.getDefaultData();
     } catch (error) {
@@ -94,14 +100,64 @@ export const storage = {
           title: 'SOLIDWORKS 3D CAD Specialization',
           issuer: 'Dassault Systems (Coursera)',
           date: '2025-08',
-          credentialUrl: 'https://coursera.org/verify/specialization/example1'
+          credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/1Z9RQUOEMMLQ',
+          credentialId: '1Z9RQUOEMMLQ'
         },
         {
           id: '2',
           title: 'Six Sigma Yellow Belt',
           issuer: 'Kennesaw State University (Coursera)',
           date: '2025-08',
-          credentialUrl: 'https://coursera.org/verify/example2'
+          credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/QFX55BHAWYJK',
+          credentialId: 'QFX55BHAWYJK'
+        },
+        {
+          id: '3',
+          title: 'Google Project Management Certificate',
+          issuer: 'Google (Coursera)',
+          date: '2025-07',
+          credentialUrl: 'https://www.coursera.org/account/accomplishments/professional-cert/UVE99BTSXUF0',
+          credentialId: 'UVE99BTSXUF0'
+        },
+        {
+          id: '4',
+          title: 'Digital Technologies & Manufacturing',
+          issuer: 'University of Michigan (Coursera)',
+          date: '2025-06',
+          credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/DH6AMCFTZEF3',
+          credentialId: 'DH6AMCFTZEF3'
+        },
+        {
+          id: '5',
+          title: 'AI for Mechanical Engineers',
+          issuer: 'University of Michigan (Coursera)',
+          date: '2025-04',
+          credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/LTBELHHCWTG6',
+          credentialId: 'LTBELHHCWTG6'
+        },
+        {
+          id: '6',
+          title: 'CNC Miller Certification',
+          issuer: 'Iran Technical & Vocational Training',
+          date: '2020',
+          credentialUrl: '',
+          credentialId: ''
+        },
+        {
+          id: '7',
+          title: 'Python for Everybody',
+          issuer: 'University of Michigan (Coursera)',
+          date: '2025-07',
+          credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/5QKJRPP7ZB9C',
+          credentialId: '5QKJRPP7ZB9C'
+        },
+        {
+          id: '8',
+          title: 'Meta Full-Stack Developer',
+          issuer: 'Meta (Coursera)',
+          date: '2025-08',
+          credentialUrl: 'https://www.coursera.org/account/accomplishments/specialization/M103G9DKSBBK',
+          credentialId: 'M103G9DKSBBK'
         }
       ],
       projects: [

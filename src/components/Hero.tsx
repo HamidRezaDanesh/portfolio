@@ -1,4 +1,4 @@
-// src/components/Hero.tsx - ✅ COMPLETE RTL SUPPORT FOR PERSIAN
+// src/components/Hero.tsx - ✅ FIXED DOWNLOAD BUTTON
 import { useTranslation } from 'react-i18next';
 import { Download, Mail, ArrowRight, Sparkles } from 'lucide-react';
 import { useTypingEffect } from '@/hooks/useTypingEffect';
@@ -39,8 +39,26 @@ const Hero = () => {
     delayBetweenWords: 2000,
   });
 
+  // ✅ تابع دانلود رزومه - اصلاح شده
   const handleDownloadResume = () => {
-    console.log('Download resume clicked');
+    try {
+      // ایجاد یک لینک موقت
+      const link = document.createElement('a');
+      window.location.href = '/resume/resume.pdf';  // مسیر فایل در public/resume/
+      link.download = 'Hamidreza-Daneshsarand-Resume.pdf';  // نام فایل دانلود
+      link.target = '_blank';  // backup: باز شدن در تب جدید
+      
+      // اضافه، کلیک و حذف
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      console.log('✅ Resume download started');
+    } catch (error) {
+      console.error('❌ Download error:', error);
+      // fallback: باز کردن مستقیم
+      window.open('/resume/resume.pdf', '_blank');
+    }
   };
 
   const handleContactClick = () => {
@@ -157,9 +175,9 @@ const Hero = () => {
                   src="/images/profile-pic.webp" 
                   alt="Hamidreza Daneshsarand - Mechanical Design Engineer"
                   className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500"
-                  loading="eager"  // ✅ تغییر از lazy به eager
-                  width="448"      // ✅ اضافه کن
-                  height="448"     // ✅ اضافه کن                
+                  loading="eager"
+                  width="448"
+                  height="448"                
                   decoding="async"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
